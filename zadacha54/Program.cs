@@ -5,7 +5,6 @@ int rows = int.Parse(space[0]);
 int columns = int.Parse(space[1]);
 
 int[,] CreateArray(int rows, int columns) {
-    Console.WriteLine("Изначальный массив");
     Random rnd = new Random();
     int[,] arr = new int [rows, columns];
     for(int i = 0; i < rows; i++) {
@@ -49,11 +48,11 @@ void SortShowAndDifference(int[,] n)
         }
 
         Console.WriteLine($"Упорядоченный {o + 1} массив");
-
         Show1DArray(arr);
 
         list.Clear();
     }
 }
 
+Console.WriteLine("Изначальный массив");
 SortShowAndDifference(CreateArray(rows, columns));
