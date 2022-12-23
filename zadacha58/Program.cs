@@ -11,7 +11,33 @@ int[,] CreateSquareArray() {
     return arr;
 }
 
-void Show2DArray(double[,] arr) {
+int[,] MatrixMultiplication(int[,] matrixA, int[,] matrixB) {
+    int[,] matrixC = new int[size, size];
+
+    for (var i = 0; i < size; i++) {
+        for (var j = 0; j < size; j++) {
+            matrixC[i, j] = 0;
+
+            for (var k = 0; k < size; k++) {
+                matrixC[i, j] += matrixA[i, k] * matrixB[k, j];
+            }
+        }
+    }
+
+    // Проверка
+    for(int i = 0; i < size; i++) {
+        for(int o = 0; o < size; o++) {
+            Console.Write((o == size - 1) ? $"{matrixA[i, o]} | " : $"{matrixA[i, o]} ");
+        }
+        for(int o = 0; o < size; o++) {
+            Console.Write((o == size - 1) ? $"{matrixB[i, o]}\n" : $"{matrixB[i, o]} ");
+        }
+    }     
+
+    return matrixC;
+}
+
+void Show2DArray(int[,] arr) {
     for(int i = 0; i < size; i++) {
         for(int o = 0; o < size; o++) {
             Console.Write((o == size - 1) ? $"{arr[i, o]}\n" : $"{arr[i, o]} ");
@@ -19,24 +45,4 @@ void Show2DArray(double[,] arr) {
     }
 }
 
-double[,] ShowCountArrays(int[,] arr1, int[,] arr2) {
-    Console.WriteLine("Изначальные матрицы");
-    for(int i = 0; i < size; i++) {
-        for(int o = 0; o < size; o++) {
-            Console.Write((o == size - 1) ? $"{arr1[i, o]} | " : $"{arr1[i, o]} ");
-        }
-        for(int o = 0; o < size; o++) {
-            Console.Write((o == size - 1) ? $"{arr2[i, o]}\n" : $"{arr2[i, o]} ");
-        }
-    }
-
-    double[,] result = new double[size, size];
-    result[0, 0] = arr1[0, 0] * arr2[0, 0] + arr1[0, 1] * arr2[1, 0];
-    result[0, 1] = arr1[0, 0] * arr2[0, 1] + arr1[0, 1] * arr2[1, 1];
-    result[1, 0] = arr1[1, 0] * arr2[0, 0] + arr1[1, 1] * arr2[1, 0];
-    result[1, 1] = arr1[1, 0] * arr2[0, 1] + arr1[1, 1] * arr2[1, 1];
-
-    return result;    
-}
-
-Show2DArray(ShowCountArrays(CreateSquareArray(), CreateSquareArray()));
+Show2DArray(MatrixMultiplication(CreateSquareArray(), CreateSquareArray()));
