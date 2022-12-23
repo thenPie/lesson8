@@ -14,11 +14,11 @@ int[,] CreateSquareArray() {
 int[,] MatrixMultiplication(int[,] matrixA, int[,] matrixB) {
     int[,] matrixC = new int[size, size];
 
-    for (var i = 0; i < size; i++) {
-        for (var j = 0; j < size; j++) {
+    for (int i = 0; i < size; i++) {
+        for (int j = 0; j < size; j++) {
             matrixC[i, j] = 0;
 
-            for (var k = 0; k < size; k++) {
+            for (int k = 0; k < size; k++) {
                 matrixC[i, j] += matrixA[i, k] * matrixB[k, j];
             }
         }
